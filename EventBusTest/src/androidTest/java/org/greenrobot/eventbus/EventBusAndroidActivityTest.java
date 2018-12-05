@@ -20,6 +20,10 @@ import android.support.test.annotation.UiThreadTest;
 import android.support.test.rule.UiThreadTestRule;
 import android.util.Log;
 
+import org.greenrobot.eventbus.AbstractEventBusTest;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.EventBusBasicTest;
+import org.greenrobot.eventbus.Subscribe;
 import org.junit.Rule;
 import org.junit.Test;
 

@@ -17,38 +17,45 @@ package org.greenrobot.eventbus;
 
 import android.os.Looper;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.junit.Test;
 
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 /**
  * @author Markus Junginger, greenrobot
  */
-public class EventBusBackgroundThreadTest extends AbstractAndroidEventBusTest {
+public class EventBusMainThreadTest extends AbstractAndroidEventBusTest {
 
     @Test
-    public void testPostInCurrentThread() throws InterruptedException {
+    public void testPost() throws InterruptedException {
         eventBus.register(this);
         eventBus.post("Hello");
         waitForEventCount(1, 1000);
 
         assertEquals("Hello", lastEvent);
-        assertEquals(Thread.currentThread(), lastThread);
+        assertEquals(Looper.getMainLooper().getThread(), lastThread);
     }
 
     @Test
-    public void testPostFromMain() throws InterruptedException {
+    public void testPostInBackgroundThread() throws InterruptedException {
+        TestBackgroundPoster backgroundPoster = new TestBackgroundPoster(eventBus);
+        backgroundPoster.start();
+
         eventBus.register(this);
-        postInMainThread("Hello");
+        backgroundPoster.post("Hello");
         waitForEventCount(1, 1000);
         assertEquals("Hello", lastEvent);
-        assertFalse(lastThread.equals(Thread.currentThread()));
-        assertFalse(lastThread.equals(Looper.getMainLooper().getThread()));
+        assertEquals(Looper.getMainLooper().getThread(), lastThread);
+
+        backgroundPoster.shutdown();
+        backgroundPoster.join();
     }
 
-    @Subscribe(threadMode = ThreadMode.BACKGROUND)
-    public void onEventBackgroundThread(String event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(String event) {
         trackEvent(event);
     }
 

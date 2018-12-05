@@ -18,6 +18,8 @@ package org.greenrobot.eventbus;
 import android.os.Handler;
 import android.os.Looper;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.junit.Test;
 
 import java.util.Random;

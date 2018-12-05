@@ -15,6 +15,7 @@
  */
 package org.greenrobot.eventbus;
 
+import org.greenrobot.eventbus.EventBusCancelEventDeliveryTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

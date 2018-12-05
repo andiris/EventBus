@@ -21,6 +21,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.greenrobot.eventbus.AbstractEventBusTest;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 

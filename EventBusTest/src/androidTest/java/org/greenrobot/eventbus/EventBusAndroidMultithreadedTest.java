@@ -15,6 +15,9 @@
  */
 package org.greenrobot.eventbus;
 
+import org.greenrobot.eventbus.EventBusMultithreadedTest;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
