@@ -1,10 +1,11 @@
 buildscript {
     repositories {
         mavenCentral()
+        google()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.13.3'
+        classpath 'com.android.tools.build:gradle:3.2.1'
     }
 }
 
@@ -12,14 +13,15 @@ apply plugin: 'com.android.application'
 
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencies {
-    androidTestCompile project(':EventBus')
+    androidTestImplementation project(':EventBus')
 }
 
 android {
-    buildToolsVersion '20.0.0'
+    buildToolsVersion '28.0.3'
     compileSdkVersion 19
 
     sourceSets {
